@@ -1,7 +1,8 @@
-$(function() {
+$(function () {
     window.jsonForm = new JsonForm()
     var Form1Payload = {
-        submit_button_text:"Crear formulario",
+        hide_validation: false,
+        submit_button_text: "Crear formulario",
         fields: [
             {
                 id: "requestNo",
@@ -9,9 +10,9 @@ $(function() {
                 type: "field",
                 field: {
                     type: "text",
-                    readonly:true,
+                    readonly: true,
                     width: "5",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -20,9 +21,9 @@ $(function() {
                 type: "field",
                 field: {
                     type: "text",
-                    readonly:true,
+                    readonly: true,
                     width: "7",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -38,9 +39,19 @@ $(function() {
                 field: {
                     type: "text",
                     width: "12",
-                    required:false
+                    required: false
                 }
-                
+
+            },
+            {
+                id: "direction",
+                name: "Escoja una dirección",
+                type: "field",
+                field: {
+                    type: "select",
+                    default_value: "Dirección de Sanidad Animal",
+                    options: ["Dirección de Sanidad Animal", "Dirección de Sanidad Vegetal"]
+                }
             },
             {
                 id: "header",
@@ -49,7 +60,7 @@ $(function() {
                 field: {
                     type: "textarea",
                     width: "12",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -60,7 +71,7 @@ $(function() {
                     type: "file",
                     width: 4,
                     helptext: "Seleccionar logo izquierdo",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -71,7 +82,7 @@ $(function() {
                     type: "file",
                     width: 4,
                     helptext: "Seleccionar logo derecho",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -80,9 +91,9 @@ $(function() {
                 type: "field",
                 field: {
                     type: "textarea",
-                    rows:2,
+                    rows: 2,
                     width: "12",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -92,7 +103,7 @@ $(function() {
                 field: {
                     type: "text",
                     width: "12",
-                    required:false
+                    required: false
                 }
             },
             {
@@ -103,7 +114,24 @@ $(function() {
                     type: "textarea",
                     rows: 3,
                     width: "12",
-                    required:false
+                    required: false
+                }
+            },
+            {
+                "id": "",
+                "name": "Divisor",
+                "type": "html",
+                "html": "<hr/><strong>Agregar campos</strong>"
+            },
+            {
+                "id": "fields",
+                "name": "",
+                "type": "field",
+                "field": {
+                    "type": "list",
+                    "placeholder": "Campo",
+                    "helptext": "Ingrese el campo y presione '+'",
+                    required: false
                 }
             },
             {
@@ -117,10 +145,11 @@ $(function() {
                 "name": "",
                 "type": "field",
                 "field": {
-                  "type": "list",
-                  "placeholder": "Disclaimer",
-                  "helptext": "Ingrese el disclaimer y presione '+'",
-                    required:false
+                    "type": "list",
+                    "placeholder": "Disclaimer",
+                    "helptext": "Ingrese el disclaimer y presione '+'",
+                    required: false,
+
                 }
             },
             {
@@ -134,27 +163,29 @@ $(function() {
                 "name": "",
                 "type": "field",
                 "field": {
-                  "type": "list",
-                  "placeholder": "Requisito",
-                  "helptext": "Ingrese el requisito y presione '+'",
-                  required:false
+                    "type": "list",
+                    "placeholder": "Requisito",
+                    "helptext": "Ingrese el requisito y presione '+'",
+                    required: false,
                 }
             },
+
         ]
     }
+
     $("#json").text(JSON.stringify(Form1Payload, null, 2))
     window.jsonForm.create("#Form1", Form1Payload, "Form1")
     window.jsonForm.registerSubmit(Form1Handler, "Form1")
 
+
     function Form1Handler(valid, data) {
-        
         if (valid) {
-            console.log(JSON.stringify(data));
-            var data = JSON.stringify(data)
-            $.post("/Home/Create", { JsonData : data });
-            
+            console.log(JSON.stringify(data))
         } else {
             $("#Form1Data").text("Form is NOT VALID. Did you fill out all fields?")
         }
     }
+
+
+
 })

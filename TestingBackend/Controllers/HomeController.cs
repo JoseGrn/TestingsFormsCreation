@@ -14,9 +14,14 @@ namespace TestingBackend.Controllers
         {
             return View();
         }
-        [HttpPost]
+		public ActionResult Create()
+		{
+			return View();
+		}
+		[HttpPost]
         public JsonResult Create(string JsonData)
         {
+			
             /*
             var serializer = new JavaScriptSerializer();
             //serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
