@@ -1,0 +1,61 @@
+﻿body {
+	background: white;
+	padding: 20px 80px 80px;
+	margin-bottom: 100px;
+}
+
+.tabla {
+	padding-top: 5px
+}
+
+.titulo {
+	color: black
+}
+
+.titulos {
+	color: #575a5e
+}
+
+.linea {
+	color: #575a5e
+}
+
+.borders {
+	color: #575a5e
+}
+
+.items {
+	padding: 5px 5px 5px 5px;
+	color: #575a5e;
+	font-weight: normal;
+	font-size: normal;
+}
+
+.nombre {
+	width: 40%
+}
+
+.id {
+	width: 5%;
+	text-align: center;
+}
+
+.direccion {
+	width: 12%;
+}
+
+.codigo {
+	width: 15%;
+}
+
+.edit {
+	color: white;
+}
+
+.acciones {
+	padding: 2px;
+}
+
+html, body {
+	height: 100%;
+}
