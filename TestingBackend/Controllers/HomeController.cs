@@ -45,6 +45,49 @@ namespace TestingBackend.Controllers
             return Json(new { data = JsonData});
         }
 
+        public JsonResult Edit(string ID)
+        {
+            List<string> DisclaimerList = new List<string>();
+            DisclaimerList.Add("Primer disclaimer");
+            DisclaimerList.Add("Segundo disclaimer");
+            DisclaimerList.Add("tercer disclaimer");
+            List<string> Requeriments = new List<string>();
+            Requeriments.Add("Primer requeriment");
+            Requeriments.Add("Segundo requeriment");
+            Requeriments.Add("Tercer requeriment");
+            var obj = new MyData
+            {
+                requestNo = "XLMAA0",
+                lastUpdate = "12/12/12",
+                name = "JOSE GIRON",
+                header = "SOY UN ENCABEZADO",
+                leftLogo = new PicturePath
+                {
+                    path = "C:\\fakepath\\WIN_20210716_12_42_49_Pro.jpg"
+                },
+                rightLogo = new PicturePath
+                {
+                    path = "C:\\fakepath\\WIN_20210716_12_42_49_Pro.jpg"
+                },
+                title = "SOY UN TITULO",
+                registerCode = "CODIGO DE REGISTRO",
+                resumeText = "SOY UN RESUMEN",
+                disclaimers = new ItemsList
+                {
+                    list = DisclaimerList
+                },
+                requirements = new ItemsList
+                {
+                    list = Requeriments
+                }
+            };
+
+            var JsonData = new JavaScriptSerializer().Serialize(obj);
+
+
+            return Json(JsonData);
+        }
+
         public List<string> EliminacionLetras(string datos)
         {
             List<string> listapalabras = new List<string>();
