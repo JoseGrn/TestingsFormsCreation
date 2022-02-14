@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Form.cs" />
     <Compile Include="Models\JsonSchema\FormSchema.cs" />
     <Compile Include="Models\JsonSchema\KeySchema.cs" />
     <Compile Include="Models\JsonSchema\SchemaSchema.cs" />
