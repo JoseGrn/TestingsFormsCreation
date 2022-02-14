@@ -1,65 +1,98 @@
 
 $('form').jsonForm({
     "schema": {
+
         "requestNo": {
             "type": "string",
             "title": "No. de Solicitud",
+            "readOnly": true
         },
         "lastUpdate": {
             "type": "string",
-            "title": "Última modificación"
+            "title": "Última modificación",
+            "readOnly": true
         },
         "name": {
             "type": "string",
-            "title": "Nombre"
+            "title": "Nombre",
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true
         },
         "direction": {
             "type": "string",
             "title": "Dirección",
-            "enum": ["SA", "SV"],
+            "pattern": "[A-Za-z]{5}",
+            "enum": ["NO", "SA", "SV"],
+            "maxLength": 500,
+            "required": true
         },
         "header": {
             "type": "string",
-            "title": "Encabezado"
+            "title": "Encabezado",
+            "pattern": "[A-Za-z]{5}",
+            "required": true
         },
-        "leftLogoBtn": {
+        "leftLogo": {
             "type": "string",
-            "title": "Logo Izquierdo"
+            "title": "Logo Izquierdo",
+            "required": true
         },
-        "rightLogoBtn": {
+        "rightLogo": {
             "type": "string",
-            "title": "Logo Derecho"
+            "title": "Logo Derecho",
+            "required": true
         },
         "title": {
             "type": "string",
-            "title": "Título"
+            "title": "Título",
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true
         },
         "registerCode": {
             "type": "string",
-            "title": "Código de registro de solicitud"
+            "title": "Código de registro de solicitud",
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true
         },
         "resumeText": {
             "type": "string",
-            "title": "Texto resumen de normativa"
+            "title": "Texto resumen de normativa",
+            "pattern": "[A-Za-z]{5}",
+            "required": true
         },
         "fields": {
             "type": "array",
+            "minItems": 1,
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true,
             "items": {
-                "title": "Ingrese el campo y presione '+'",
+                "description": "Ingrese el campo y presione '+'",
                 "type": "string",
             }
         },
         "disclaimers": {
             "type": "array",
+            "minItems": 1,
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true,
             "items": {
-                "title": "Ingrese el disclaimer y presione '+'",
+                "description": "Ingrese el disclaimer y presione '+'",
                 "type": "string",
             }
         },
         "requirements": {
             "type": "array",
+            "minItems": 1,
+            "pattern": "[A-Za-z]{5}",
+            "maxLength": 500,
+            "required": true,
             "items": {
-                "title": "Ingrese el requisito y presione '+'",
+                "description": "Ingrese el requisito y presione '+'",
                 "type": "string",
             }
         }
@@ -68,6 +101,7 @@ $('form').jsonForm({
         {
             "key": "requestNo",
             "type": "text",
+            "class": "textInfo",
             "readonly": "true",
         },
         {
@@ -82,6 +116,7 @@ $('form').jsonForm({
         {
             "key": "direction",
             "titleMap": {
+                "NO": "Dirección",
                 "SA": "Dirección de Sanidad Animal",
                 "SV": "Dirección de Sanidad Vegetal"
             }
@@ -92,28 +127,12 @@ $('form').jsonForm({
             "height": "40%",
         },
         {
-            "key": "leftLogoBtn",
+            "key": "leftLogo",
             "type": "file",
-            "accept": ".png,.jpg",
-            "onChange": function (evt, node) {
-                if (evt.target.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        var dataUrl = event.target.result
-                        var img = document.createElement('img')
-                        img.src = dataUrl;
-                        document.body.appendChild(img);
-                        console.log(event.target.result);
-                        reader.readAsDataURL(event.target.files[0]);
-                    };
-                    reader.readAsText(evt.target.files[0]);
-                } else {
-                    document.getElementsByName('file_content')[0].value = '';
-                }
-            }
+            "accept": ".png,.jpg"
         },
         {
-            "key": "rightLogoBtn",
+            "key": "rightLogo",
             "type": "file",
             "accept": ".png,.jpg",
         },
@@ -154,14 +173,11 @@ $('form').jsonForm({
             }]
         },
         {
-            "type": "htmlsnippet",
-            "value": "<h1>Hola!</h1>"
-        },
-        {
             "type": "submit",
             "class": "btn-primary",
             "title": "Enviar",
         },
+
     ],
     onSubmit: function (errors, values) {
         if (errors) {
