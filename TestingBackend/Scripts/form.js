@@ -2,7 +2,7 @@ $(function () {
     window.jsonForm = new JsonForm()
     var Form1Payload = {
         hide_validation: false,
-        submit_button_text: "Crear formulario",
+        submit_button_text: "Crear",
         fields: [
             {
                 id: "requestNo",
