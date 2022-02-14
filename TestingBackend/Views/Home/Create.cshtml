@@ -1,19 +1,179 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
+	<title>Formulario MAGA</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="~/Content/styles.css">
 </head>
 <body>
+	<h1 class="text-center">Crear formulario</h1>
+	<form></form>
+	<div id="res" class="alert"></div>
+	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="~/Scripts/deps/jquery.min.js"></script>
+	<script type="text/javascript" src="~/Scripts/deps/underscore.js"></script>
+	<script type="text/javascript" src="~/Scripts/deps/opt/jsv.js"></script>
+	<script type="text/javascript" src="~/Scripts/lib/jsonform.js"></script>
+	<script type="text/javascript">
+    $('form').jsonForm({
+  "schema": {
+    "requestNo": {
+      "type": "string",
+      "title": "No. de Solicitud"
+    },
+    "lastUpdate": {
+      "type": "string",
+      "title": "Última modificación"
+    },
+    "name": {
+      "type": "string",
+      "title": "Nombre"
+    },
+    "direction": {
+      "type": "string",
+      "title": "Dirección",
+      "enum": [ "SA", "SV"],
+    },
+    "header": {
+      "type": "string",
+      "title": "Encabezado"
+    },
+    "leftLogo":{
+      "type":"string",
+      "title":"Logo Izquierdo"
+    },
+    "rightLogo":{
+      "type":"string",
+      "title":"Logo Derecho"
+    },
+    "title": {
+      "type": "string",
+      "title": "Título"
+    },
+    "registerCode": {
+      "type": "string",
+      "title": "Código de registro de solicitud"
+    },
+    "resumeText": {
+      "type": "string",
+      "title": "Texto resumen de normativa"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "title": "Ingrese el campo y presione '+'",
+        "type": "string",
+      }
+    },
+    "disclaimers": {
+      "type": "array",
+      "items": {
+        "title": "Ingrese el disclaimer y presione '+'",
+        "type": "string",
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "title": "Ingrese el requisito y presione '+'",
+        "type": "string",
+      }
+    }
+  },
+  "form": [
+    {
+      "key": "requestNo",
+      "type": "text",
+      "readonly":"true",
+    },
+    {
+      "key":"lastUpdate",
+      "type": "text",
+      "readonly":"true"
+    },
+    {
+      "key":"name",
+      "type": "text",
+    },
+    {
+      "key": "direction",
+      "titleMap": {
+        "SA": "Dirección de Sanidad Animal",
+        "SV": "Dirección de Sanidad Vegetal"
+      }
+    },
+    {
+      "key":"header",
+      "type": "textarea",
+      "height": "40%",
+    },
+    {
+      "key":"leftLogo",
+      "type":"file",
+      "accept":".png,.jpg"
+    },
+    {
+      "key":"rightLogo",
+      "type":"file",
+      "accept":".png,.jpg",
+    },
+    {
+      "key":"title",
+      "type": "textarea",
+      "height": "20%",
+    },
+    {
+      "key":"registerCode",
+      "type": "text",
+      "height": "20%",
+    },
+    {
+      "key":"resumeText",
+      "type": "textarea",
+      "height": "30%",
+    },
+    {
+      "type": "array",
+      "items": [{
+        "key": "fields[]",
+        "title": "Campo no. {{idx}}"
+      }]
+    },
+    {
+      "type": "array",
+      "items": [{
+        "key": "disclaimers[]",
+        "title": "Disclaimer no. {{idx}}"
+      }]
+    },
+    {
+      "type": "array",
+      "items": [{
+        "key": "requirements[]",
+        "title": "Requisito no. {{idx}}"
+      }]
+    },
+    {
+      "type": "submit",
+      "class":"btn-primary",
+      "title": "Enviar",
+    },
 
-	<h3 class="mt-5">Crear formulario</h3>
-	<hr>
-	<div id="Form1"></div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script src="~/Scripts/bs-jsonform.js"></script>
-	<script src="~/Scripts/form.js"></script>
+  ],
+  onSubmit: function (errors, values) {
+        if (errors) {
+          $('#res').html('<p>I beg your pardon?</p>');
+
+        } else {
+          $('#res').html('<p>Hello ' + values.requestNo + '.' +
+            (values.age ? '<br/>You are ' + values.leftLogo + '.' : '') +
+            '</p>');
+            console.log(JSON.stringify(values))
+        }
+      },
+},
+);
+	</script>
 </body>
 </html>

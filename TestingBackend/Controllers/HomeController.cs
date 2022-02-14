@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using TestingBackend.Models;
+using TestingBackend.Models.JsonSchema;
+using TestingBackend.Models.MyDataClasses;
 
 namespace TestingBackend.Controllers
 {
@@ -23,10 +24,7 @@ namespace TestingBackend.Controllers
         public JsonResult Create(string JsonData)
         {
 			
-            
-            var serializer = new JavaScriptSerializer();
             //dynamic obj = serializer.Deserialize(JsonData, typeof(object));
-            TestEdit testEdit = JsonConvert.DeserializeObject<TestEdit>(JsonData);
             
             //dynamic id = myFormDetail.myFormDetail;
             //Dictionary<System.String, System.Object> diccionario1 = new Dictionary<System.String, System.Object>();
@@ -48,50 +46,52 @@ namespace TestingBackend.Controllers
             var iconNode = list.FirstOrDefault(r => r.Key == "Icon");
             var valueOfO = iconNode.Value.Value.Value;*/
 
-            return Json(testEdit);
+            MyData myData = JsonConvert.DeserializeObject<MyData>(JsonData);
+
+            return Json(myData);
         }
 
         public JsonResult Edit(string ID)
         {
-            List<string> Fields = new List<string>
-            {
-                "Campo 1",
-                "Campo 2",
-                "Campo 3"
-            };
+            List<string> Fields = new List<string>{"Campo 1","Campo 2","Campo 3"};
 
-            List<string> Disclaimers = new List<string>
-            {
-                "Disclaimer 1",
-                "Disclaimer 2",
-                "Disclaimer 3"
-            };
+            List<string> Disclaimers = new List<string>{"Disclaimer 1","Disclaimer 2","Disclaimer 3"};
 
-            List<string> Requeriments = new List<string>
-            {
-                "Requeriment 1",
-                "Requeriment 2",
-                "Requeriment 3"
-            };
+            List<string> Requeriments = new List<string>{"Requeriment 1","Requeriment 2","Requeriment 3"};
 
-            TestEdit obj = new TestEdit
+            MyData obj = new MyData
             {
                 requestNo = "XLMAA0",
                 lastUpdate = "12/12/12",
-                name = "JOSE GIRON",
-                //direction = "direccion nueva",
+                name = "nombre",
+                direction = "direccion nueva",
                 header = "SOY UN ENCABEZADO",
                 title = "SOY UN TITULO",
                 registerCode = "CODIGO DE REGISTRO",
                 resumeText = "SOY UN RESUMEN",
-                //fields = Fields,
-                //disclaimers = Disclaimers,
-                //requirements = Requeriments
+                fields = Fields,
+                disclaimers = Disclaimers,
+                requirements = Requeriments
             };
-
+            
             return Json(obj);
         }
 
+        public JsonResult LoadForm()
+        {
+            SchemaJson schemaJson = new SchemaJson
+            {
+                requestNo = new StringSchema { title = "No. de Solicitud" },
+                lastUpdate = new StringSchema { title = "Última modificación" },
+                name = new StringSchema { title = "Nombre" },
+                direction = new StringSchema { title = "Dirección" }
+            };
+
+
+            return Json(schemaJson);
+        }
+
+        //metodo basura
         public List<string> EliminacionLetras(string datos)
         {
             List<string> listapalabras = new List<string>();
