@@ -145,7 +145,6 @@ C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\bin
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\bin\Newtonsoft.Json.xml
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\bin\Antlr3.Runtime.pdb
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.csprojAssemblyReference.cache
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.csproj.CoreCompileInputs.cache
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.csproj.CopyComplete
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.dll
