@@ -24,27 +24,6 @@ namespace TestingBackend.Controllers
         public JsonResult Create(string JsonData)
         {
 			
-            //dynamic obj = serializer.Deserialize(JsonData, typeof(object));
-            
-            //dynamic id = myFormDetail.myFormDetail;
-            //Dictionary<System.String, System.Object> diccionario1 = new Dictionary<System.String, System.Object>();
-
-            //diccionario1 = obj[10];
-            
-            //List<string> DisclaimersList = new List<string>();
-            //List<string> RequirementsList = new List<string>();
-            //dynamic data = JsonConvert.DeserializeObject(JsonData, typeof(object));
-            //var list = data.disclaimers as IEnumerable<dynamic>;
-            //string datos = list.ToString();
-            //DisclaimersList = EliminacionLetras(datos);
-            //list = data.requirements as IEnumerable<dynamic>;
-            //datos = list.ToString();
-            //RequirementsList = EliminacionLetras(datos);
-            /*
-            dynamic data = JsonConvert.DeserializeObject(JsonData, typeof(object));
-            var list = data.Response.Outcome.KeyValueOfstringOutcomepQnxSKQu as IEnumerable<dynamic>;
-            var iconNode = list.FirstOrDefault(r => r.Key == "Icon");
-            var valueOfO = iconNode.Value.Value.Value;*/
 
             MyData myData = JsonConvert.DeserializeObject<MyData>(JsonData);
 
@@ -95,16 +74,7 @@ namespace TestingBackend.Controllers
             {
                 schema = new SchemaSchema
                 {
-                    requestNo = new StringSchema { title = "No. de Solicitud" },
-                    lastUpdate = new StringSchema { title = "Última modificación" },
-                    name = new StringSchema { title = "Nombre" },
-                    direction = new StringSchema { title = "Dirección" },
-                    header = new StringSchema { title = "Encabezado" },
-                    leftLogo = new StringSchema { title = "Logo izquierdo" },
-                    rightLogo = new StringSchema { title = "logo derecho" },
-                    title = new StringSchema { title = "titulo" },
-                    registerCode = new StringSchema { title = "codigo de registro" },
-                    resumeText = new StringSchema { title = "un resumen de todo" }
+
                 },
                 form = new List<FormSchema>
                 {
