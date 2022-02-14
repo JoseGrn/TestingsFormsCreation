@@ -79,12 +79,37 @@ namespace TestingBackend.Controllers
 
         public JsonResult LoadForm()
         {
+            FormSchema form1 = new FormSchema { key = "requestNo", type = "text" };
+            FormSchema form2 = new FormSchema { key = "lastUpdate", type = "text" };
+            FormSchema form3 = new FormSchema { key = "name", type = "text" };
+            FormSchema form4 = new FormSchema { key = "direction", type = "text" };
+            FormSchema form5 = new FormSchema { key = "header", type = "textarea" };
+            FormSchema form6 = new FormSchema { key = "leftLogo", type = "file" };
+            FormSchema form7 = new FormSchema { key = "rightLogo", type = "file" };
+            FormSchema form8 = new FormSchema { key = "title", type = "textarea" };
+            FormSchema form9 = new FormSchema { key = "registerCode", type = "text" };
+            FormSchema form10 = new FormSchema { key = "resumeText", type = "textarea" };
+            
+
             SchemaJson schemaJson = new SchemaJson
             {
-                requestNo = new StringSchema { title = "No. de Solicitud" },
-                lastUpdate = new StringSchema { title = "Última modificación" },
-                name = new StringSchema { title = "Nombre" },
-                direction = new StringSchema { title = "Dirección" }
+                schema = new SchemaSchema
+                {
+                    requestNo = new StringSchema { title = "No. de Solicitud" },
+                    lastUpdate = new StringSchema { title = "Última modificación" },
+                    name = new StringSchema { title = "Nombre" },
+                    direction = new StringSchema { title = "Dirección" },
+                    header = new StringSchema { title = "Encabezado" },
+                    leftLogo = new StringSchema { title = "Logo izquierdo" },
+                    rightLogo = new StringSchema { title = "logo derecho" },
+                    title = new StringSchema { title = "titulo" },
+                    registerCode = new StringSchema { title = "codigo de registro" },
+                    resumeText = new StringSchema { title = "un resumen de todo" }
+                },
+                form = new List<FormSchema>
+                {
+                    form1, form2, form3, form4, form5, form6, form7, form8, form9, form10
+                }
             };
 
 

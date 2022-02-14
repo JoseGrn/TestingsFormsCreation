@@ -1,191 +1,173 @@
-$(function () {
-    window.jsonForm = new JsonForm()
-    var Form1Payload = {
-        hide_validation: false,
-        submit_button_text: "Crear",
-        fields: [
-            {
-                id: "requestNo",
-                name: "No. de Solicitud",
-                type: "field",
-                field: {
-                    type: "text",
-                    readonly: true,
-                    width: "5",
-                    required: false
-                }
-            },
-            {
-                id: "lastUpdate",
-                name: "Última modificación",
-                type: "field",
-                field: {
-                    type: "text",
-                    readonly: true,
-                    width: "7",
-                    required: false
-                }
-            },
-            {
-                id: "",
-                name: "Divisor",
-                type: "html",
-                html: "<hr />"
-            },
-            {
-                id: "name",
-                name: "Nombre",
-                type: "field",
-                field: {
-                    type: "text",
-                    width: "12",
-                    required: false
-                }
 
-            },
-            {
-                id: "direction",
-                name: "Escoja una dirección",
-                type: "field",
-                field: {
-                    type: "select",
-                    default_value: "Dirección de Sanidad Animal",
-                    options: ["Dirección de Sanidad Animal", "Dirección de Sanidad Vegetal"]
-                }
-            },
-            {
-                id: "header",
-                name: "Encabezado",
-                type: "field",
-                field: {
-                    type: "textarea",
-                    width: "12",
-                    required: false
-                }
-            },
-            {
-                id: "leftLogo",
-                name: "Logo izquierdo",
-                type: "field",
-                field: {
-                    type: "file",
-                    width: 4,
-                    helptext: "Seleccionar logo izquierdo",
-                    required: false
-                }
-            },
-            {
-                id: "rightLogo",
-                name: "Logo derecho",
-                type: "field",
-                field: {
-                    type: "file",
-                    width: 4,
-                    helptext: "Seleccionar logo derecho",
-                    required: false
-                }
-            },
-            {
-                id: "title",
-                name: "Título",
-                type: "field",
-                field: {
-                    type: "textarea",
-                    rows: 2,
-                    width: "12",
-                    required: false
-                }
-            },
-            {
-                id: "registerCode",
-                name: "Código de registro de soicitud",
-                type: "field",
-                field: {
-                    type: "text",
-                    width: "12",
-                    required: false
-                }
-            },
-            {
-                id: "resumeText",
-                name: "Texto resumen de normativa",
-                type: "field",
-                field: {
-                    type: "textarea",
-                    rows: 3,
-                    width: "12",
-                    required: false
-                }
-            },
-            {
-                "id": "",
-                "name": "Divisor",
-                "type": "html",
-                "html": "<hr/><strong>Agregar campos</strong>"
-            },
-            {
-                "id": "fields",
-                "name": "",
-                "type": "field",
-                "field": {
-                    "type": "list",
-                    "placeholder": "Campo",
-                    "helptext": "Ingrese el campo y presione '+'",
-                    required: false
-                }
-            },
-            {
-                "id": "",
-                "name": "Divisor",
-                "type": "html",
-                "html": "<hr/><strong>Agregar disclaimers</strong>"
-            },
-            {
-                "id": "disclaimers",
-                "name": "",
-                "type": "field",
-                "field": {
-                    "type": "list",
-                    "placeholder": "Disclaimer",
-                    "helptext": "Ingrese el disclaimer y presione '+'",
-                    required: false,
-
-                }
-            },
-            {
-                "id": "",
-                "name": "Divisor",
-                "type": "html",
-                "html": "<hr><strong>Agregar requisitos</strong>"
-            },
-            {
-                "id": "requirements",
-                "name": "",
-                "type": "field",
-                "field": {
-                    "type": "list",
-                    "placeholder": "Requisito",
-                    "helptext": "Ingrese el requisito y presione '+'",
-                    required: false,
-                }
-            },
-
-        ]
-    }
-
-    $("#json").text(JSON.stringify(Form1Payload, null, 2))
-    window.jsonForm.create("#Form1", Form1Payload, "Form1")
-    window.jsonForm.registerSubmit(Form1Handler, "Form1")
-
-
-    function Form1Handler(valid, data) {
-        if (valid) {
-            console.log(JSON.stringify(data))
-        } else {
-            $("#Form1Data").text("Form is NOT VALID. Did you fill out all fields?")
+$('form').jsonForm({
+    "schema": {
+        "requestNo": {
+            "type": "string",
+            "title": "No. de Solicitud",
+        },
+        "lastUpdate": {
+            "type": "string",
+            "title": "Última modificación"
+        },
+        "name": {
+            "type": "string",
+            "title": "Nombre"
+        },
+        "direction": {
+            "type": "string",
+            "title": "Dirección",
+            "enum": ["SA", "SV"],
+        },
+        "header": {
+            "type": "string",
+            "title": "Encabezado"
+        },
+        "leftLogoBtn": {
+            "type": "string",
+            "title": "Logo Izquierdo"
+        },
+        "rightLogoBtn": {
+            "type": "string",
+            "title": "Logo Derecho"
+        },
+        "title": {
+            "type": "string",
+            "title": "Título"
+        },
+        "registerCode": {
+            "type": "string",
+            "title": "Código de registro de solicitud"
+        },
+        "resumeText": {
+            "type": "string",
+            "title": "Texto resumen de normativa"
+        },
+        "fields": {
+            "type": "array",
+            "items": {
+                "title": "Ingrese el campo y presione '+'",
+                "type": "string",
+            }
+        },
+        "disclaimers": {
+            "type": "array",
+            "items": {
+                "title": "Ingrese el disclaimer y presione '+'",
+                "type": "string",
+            }
+        },
+        "requirements": {
+            "type": "array",
+            "items": {
+                "title": "Ingrese el requisito y presione '+'",
+                "type": "string",
+            }
         }
-    }
-
-
-
-})
+    },
+    "form": [
+        {
+            "key": "requestNo",
+            "type": "text",
+            "readonly": "true",
+        },
+        {
+            "key": "lastUpdate",
+            "type": "text",
+            "readonly": "true"
+        },
+        {
+            "key": "name",
+            "type": "text",
+        },
+        {
+            "key": "direction",
+            "titleMap": {
+                "SA": "Dirección de Sanidad Animal",
+                "SV": "Dirección de Sanidad Vegetal"
+            }
+        },
+        {
+            "key": "header",
+            "type": "textarea",
+            "height": "40%",
+        },
+        {
+            "key": "leftLogoBtn",
+            "type": "file",
+            "accept": ".png,.jpg",
+            "onChange": function (evt, node) {
+                if (evt.target.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        var dataUrl = event.target.result
+                        var img = document.createElement('img')
+                        img.src = dataUrl;
+                        document.body.appendChild(img);
+                        console.log(event.target.result);
+                        reader.readAsDataURL(event.target.files[0]);
+                    };
+                    reader.readAsText(evt.target.files[0]);
+                } else {
+                    document.getElementsByName('file_content')[0].value = '';
+                }
+            }
+        },
+        {
+            "key": "rightLogoBtn",
+            "type": "file",
+            "accept": ".png,.jpg",
+        },
+        {
+            "key": "title",
+            "type": "textarea",
+            "height": "20%",
+        },
+        {
+            "key": "registerCode",
+            "type": "text",
+            "height": "20%",
+        },
+        {
+            "key": "resumeText",
+            "type": "textarea",
+            "height": "30%",
+        },
+        {
+            "type": "array",
+            "items": [{
+                "key": "fields[]",
+                "title": "Campo no. {{idx}}"
+            }]
+        },
+        {
+            "type": "array",
+            "items": [{
+                "key": "disclaimers[]",
+                "title": "Disclaimer no. {{idx}}"
+            }]
+        },
+        {
+            "type": "array",
+            "items": [{
+                "key": "requirements[]",
+                "title": "Requisito no. {{idx}}"
+            }]
+        },
+        {
+            "type": "htmlsnippet",
+            "value": "<h1>Hola!</h1>"
+        },
+        {
+            "type": "submit",
+            "class": "btn-primary",
+            "title": "Enviar",
+        },
+    ],
+    onSubmit: function (errors, values) {
+        if (errors) {
+        } else {
+            console.log(JSON.stringify(values))
+        }
+    },
+},
+);

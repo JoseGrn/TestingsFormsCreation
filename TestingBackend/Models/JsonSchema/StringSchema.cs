@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TestingBackend.Models.JsonSchema
 {
-    public class GeneralSchema
+    public class StringSchema
     {
         public string type = "string";
         public string title { get; set; }

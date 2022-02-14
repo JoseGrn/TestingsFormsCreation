@@ -5,9 +5,9 @@ using System.Web;
 
 namespace TestingBackend.Models.JsonSchema
 {
-    public class RequestNoFormat
+    public class FormSchema
     {
-        public string type = "string";
-        public string title = "No. de Solicitud";
+        public string key { get; set; }
+        public string type { get; set; }
     }
 }

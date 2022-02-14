@@ -5,9 +5,8 @@ using System.Web;
 
 namespace TestingBackend.Models.JsonSchema
 {
-    public class DirectionFormat
+    public class KeySchema
     {
-        public string type = "string";
-        public string tittle = "Dirección";
+        
     }
 }
