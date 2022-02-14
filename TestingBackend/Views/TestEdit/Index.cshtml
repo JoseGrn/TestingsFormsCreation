@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Passing Data From Controller to View using ViewBag</h3>
+@{
+    var data = ViewBag.Message;
+}
+
+<h3>Solicitud numero: @data.requestNo</h3>
