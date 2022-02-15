@@ -14,33 +14,12 @@ namespace TestingBackend.Controllers
 {
     public class HomeController : Controller
     {
-		List<Form> Forms = new List<Form>();
 
 		public ActionResult Index()
         {
-			Form form1 = new Form()
-			{
-				id = "1",
-				code = "Codigo F1",
-				name = "Formulario 1",
-				address = "Dirección de Sanidad Animal",
-				json = "",
-				data = ""
-			};
-			Form form2 = new Form()
-			{
-				id = "2",
-				code = "Codigo F2",
-				name = "Formulario 2",
-				address = "Dirección de Sanidad Vegetal",
-				json = "",
-				data = ""
-			};
-			Forms.Add(form1);
-			Forms.Add(form2);
-			ViewBag.List = Forms;
-			ViewData["Form"] = Forms;
-            return View(Forms);
+			ViewBag.List = Storage.Instance.Forms;
+			ViewData["Form"] = Storage.Instance.Forms;
+            return View(Storage.Instance.Forms);
         }
         public ActionResult Create()
         {
@@ -65,7 +44,7 @@ namespace TestingBackend.Controllers
 				json = NewJson,
 				data = JsonConvert.SerializeObject(myData)
 			};
-            Forms.Add(form);
+            Storage.Instance.Forms.Add(form);
             return Json(myData);
         }
 
