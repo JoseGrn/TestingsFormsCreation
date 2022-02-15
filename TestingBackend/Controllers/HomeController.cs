@@ -8,38 +8,24 @@ using System.Web.Script.Serialization;
 using TestingBackend.Models.JsonSchema;
 using TestingBackend.Models.MyDataClasses;
 using TestingBackend.Models;
+using System.Text.RegularExpressions;
 
 namespace TestingBackend.Controllers
 {
+<<<<<<< HEAD
 	public class HomeController : Controller
 	{
 		List<Form> Forms = new List<Form>();
+=======
+    public class HomeController : Controller
+    {
+>>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
 
 		public ActionResult Index()
         {
-			Form form1 = new Form()
-			{
-				id = "1",
-				code = "Codigo F1",
-				name = "Formulario 1",
-				address = "Dirección de Sanidad Animal",
-				json = "",
-				data = ""
-			};
-			Form form2 = new Form()
-			{
-				id = "2",
-				code = "Codigo F2",
-				name = "Formulario 2",
-				address = "Dirección de Sanidad Vegetal",
-				json = "",
-				data = ""
-			};
-			Forms.Add(form1);
-			Forms.Add(form2);
-			ViewBag.List = Forms;
-			ViewData["Form"] = Forms;
-            return View(Forms);
+			ViewBag.List = Storage.Instance.Forms;
+			ViewData["Form"] = Storage.Instance.Forms;
+            return View(Storage.Instance.Forms);
         }
         public ActionResult Create()
         {
@@ -52,8 +38,13 @@ namespace TestingBackend.Controllers
             string OldJson = LoadForm(myData);
             string NewJson = OldJson.Replace(@"""%""", "");
             NewJson = NewJson.Replace(@"""%\""", "");
+<<<<<<< HEAD
 			NewJson = NewJson.Replace(@"\", "");
 			Form form = new Form()
+=======
+            NewJson = NewJson.Replace(@"\", "");
+            Form form = new Form()
+>>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
 			{
 				id =  "3",
 				code = myData.registerCode,
@@ -62,8 +53,14 @@ namespace TestingBackend.Controllers
 				json = NewJson,
 				data = JsonConvert.SerializeObject(myData)
 			};
+<<<<<<< HEAD
 			return Json(myData);
 		}
+=======
+            Storage.Instance.Forms.Add(form);
+            return Json(myData);
+        }
+>>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
 
         public JsonResult Edit(string ID)
         {
@@ -144,7 +141,7 @@ namespace TestingBackend.Controllers
 			
             SchemaJson schemaJson = new SchemaJson
             {
-                schema = SchemaString,
+                schema = SchemaString,//"hola"
                 form = formList
             };
 			return JsonConvert.SerializeObject(schemaJson);

@@ -130,6 +130,7 @@
     <Compile Include="Models\JsonSchema\SchemaJson.cs" />
     <Compile Include="Models\JsonSchema\SchemaSaver.cs" />
     <Compile Include="Models\MyDataClasses\MyData.cs" />
+    <Compile Include="Models\Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
