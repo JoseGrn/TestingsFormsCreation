@@ -35,43 +35,46 @@
 					</tr>
 				</thead>
 				<tbody class="items">
-					@foreach (var item in Model)
+					@if (Model != null)
 					{
-						<tr>
-							<td class="id">
-								@Html.DisplayFor(modelItem=>item.id)
-							</td>
-							<td class="codigo">
-								@Html.DisplayFor(modelItem => item.code)
-							</td>
-							<td class="nombre">
-								@Html.DisplayFor(modelItem => item.name)
-							</td>
-							<td class="direccion">
-								@Html.DisplayFor(modelItem => item.address)
-							</td>
-							<td class="acciones">
-								<span class="span">
-									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-											data-placement="right" title="Editar">
-										<i class="fas fa-pencil-alt edit"></i>
-									</button>
-								</span>
-								<span class="span">
-									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-											data-placement="right" title="Ver">
-										<i class="fas fa-search edit"></i>
-									</button>
-								</span>
-								<span class="span">
-									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-											data-placement="right" title="Eliminar">
-										<i class="fas fa-trash-alt edit"></i>
-									</button>
-								</span>
-							</td>
-						</tr>
-					}
+					foreach (var item in Model)
+					{
+					<tr>
+						<td class="id">
+							@Html.DisplayFor(modelItem => item.id)
+						</td>
+						<td class="codigo">
+							@Html.DisplayFor(modelItem => item.code)
+						</td>
+						<td class="nombre">
+							@Html.DisplayFor(modelItem => item.name)
+						</td>
+						<td class="direccion">
+							@Html.DisplayFor(modelItem => item.address)
+						</td>
+						<td class="acciones">
+							<span class="span">
+								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+										data-placement="right" title="Editar">
+									<i class="fas fa-pencil-alt edit"></i>
+								</button>
+							</span>
+							<span class="span">
+								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+										data-placement="right" title="Ver">
+									<i class="fas fa-search edit"></i>
+								</button>
+							</span>
+							<span class="span">
+								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+										data-placement="right" title="Eliminar">
+									<i class="fas fa-trash-alt edit"></i>
+								</button>
+							</span>
+						</td>
+					</tr>
+				}
+			}
 				</tbody>
 			</table>
 		</div>

@@ -11,8 +11,8 @@ using TestingBackend.Models;
 
 namespace TestingBackend.Controllers
 {
-    public class HomeController : Controller
-    {
+	public class HomeController : Controller
+	{
 		List<Form> Forms = new List<Form>();
 
 		public ActionResult Index()
@@ -55,16 +55,15 @@ namespace TestingBackend.Controllers
 			NewJson = NewJson.Replace(@"\", "");
 			Form form = new Form()
 			{
-				id = "3",
+				id =  "3",
 				code = myData.registerCode,
 				name = myData.name,
 				address = myData.direction,
 				json = NewJson,
 				data = JsonConvert.SerializeObject(myData)
 			};
-			
-            return Json(myData);
-        }
+			return Json(myData);
+		}
 
         public JsonResult Edit(string ID)
         {
