@@ -5,8 +5,9 @@ using System.Web;
 
 namespace TestingBackend.Models.JsonSchema
 {
-    public class KeySchema
+    public class SchemaSaver
     {
-        
+        public string name { get; set; }
+        public string title { get; set; }
     }
 }

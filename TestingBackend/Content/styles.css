@@ -1,7 +1,6 @@
 ﻿body {
 	background: white;
-	padding: 20px 80px 80px;
-	margin-bottom: 100px;
+	padding: 80px 100px 100px 40px;
 }
 
 .tabla {
@@ -58,4 +57,5 @@
 
 html, body {
 	height: 100%;
+	padding: 80px 100px 100px 40px;
 }

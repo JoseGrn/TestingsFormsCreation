@@ -149,3 +149,4 @@ C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.csproj.CopyComplete
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.dll
 C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.pdb
+C:\Users\maria\OneDrive\Escritorio\maga\TestingsFormsCreation\TestingBackend\obj\Debug\TestingBackend.csprojAssemblyReference.cache

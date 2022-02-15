@@ -9,5 +9,6 @@ namespace TestingBackend.Models.JsonSchema
     {
         public string key { get; set; }
         public string type { get; set; }
-    }
+		public string value { get; set; } //para texto plano
+	}
 }

@@ -1,7 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<TestingBackend.Models.Form>
+
+
+<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
 		<link rel="stylesheet" href="~/Content/styles.css">
 	</head>
 	<body>
@@ -32,34 +35,43 @@
 					</tr>
 				</thead>
 				<tbody class="items">
-					<tr>
-						<td class="id">ID DE EJEMPLO</td>
-						<td class="codigo">COD DE EJEMPLO</td>
-						<td class="nombre">
-							NOMBRE DE EJEMPLO
-						</td>
-						<td class="direccion">DIRECCION DE EJEMPLO</td>
-						<td class="acciones">
-							<span class="span">
-								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-										data-placement="right" title="Editar">
-									<i class="fas fa-pencil-alt edit"></i>
-								</button>
-							</span>
-							<span class="span">
-								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-										data-placement="right" title="Ver">
-									<i class="fas fa-search edit"></i>
-								</button>
-							</span>
-							<span class="span">
-								<button type="button" class="btn btn-secondary" data-toggle="tooltip"
-										data-placement="right" title="Eliminar">
-									<i class="fas fa-trash-alt edit"></i>
-								</button>
-							</span>
-						</td>
-					</tr>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td class="id">
+								@Html.DisplayFor(modelItem=>item.id)
+							</td>
+							<td class="codigo">
+								@Html.DisplayFor(modelItem => item.code)
+							</td>
+							<td class="nombre">
+								@Html.DisplayFor(modelItem => item.name)
+							</td>
+							<td class="direccion">
+								@Html.DisplayFor(modelItem => item.address)
+							</td>
+							<td class="acciones">
+								<span class="span">
+									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+											data-placement="right" title="Editar">
+										<i class="fas fa-pencil-alt edit"></i>
+									</button>
+								</span>
+								<span class="span">
+									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+											data-placement="right" title="Ver">
+										<i class="fas fa-search edit"></i>
+									</button>
+								</span>
+								<span class="span">
+									<button type="button" class="btn btn-secondary" data-toggle="tooltip"
+											data-placement="right" title="Eliminar">
+										<i class="fas fa-trash-alt edit"></i>
+									</button>
+								</span>
+							</td>
+						</tr>
+					}
 				</tbody>
 			</table>
 		</div>
