@@ -127,10 +127,8 @@
     </Compile>
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\JsonSchema\FormSchema.cs" />
-    <Compile Include="Models\JsonSchema\KeySchema.cs" />
-    <Compile Include="Models\JsonSchema\SchemaSchema.cs" />
-    <Compile Include="Models\JsonSchema\StringSchema.cs" />
     <Compile Include="Models\JsonSchema\SchemaJson.cs" />
+    <Compile Include="Models\JsonSchema\SchemaSaver.cs" />
     <Compile Include="Models\MyDataClasses\MyData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

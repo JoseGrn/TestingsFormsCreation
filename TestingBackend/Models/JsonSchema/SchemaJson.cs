@@ -7,7 +7,7 @@ namespace TestingBackend.Models.JsonSchema
 {
     public class SchemaJson
     {
-        public SchemaSchema schema { get; set; }
+        public string schema { get; set; }
         public List<FormSchema> form { get; set; }
     }
 }

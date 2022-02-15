@@ -24,7 +24,11 @@ namespace TestingBackend.Controllers
 				name = "Formulario 1",
 				address = "Dirección de Sanidad Animal",
 				json = "",
+<<<<<<< HEAD
 				data = " "
+=======
+				data = ""
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
 			};
 			Form form2 = new Form()
 			{
@@ -33,7 +37,11 @@ namespace TestingBackend.Controllers
 				name = "Formulario 2",
 				address = "Dirección de Sanidad Vegetal",
 				json = "",
+<<<<<<< HEAD
 				data = " "
+=======
+				data = ""
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
 			};
 			Forms.Add(form1);
 			Forms.Add(form2);
@@ -49,41 +57,35 @@ namespace TestingBackend.Controllers
         public JsonResult Create(string JsonData)
         {
 			
-            //dynamic obj = serializer.Deserialize(JsonData, typeof(object));
-            
-            //dynamic id = myFormDetail.myFormDetail;
-            //Dictionary<System.String, System.Object> diccionario1 = new Dictionary<System.String, System.Object>();
-
-            //diccionario1 = obj[10];
-            
-            //List<string> DisclaimersList = new List<string>();
-            //List<string> RequirementsList = new List<string>();
-            //dynamic data = JsonConvert.DeserializeObject(JsonData, typeof(object));
-            //var list = data.disclaimers as IEnumerable<dynamic>;
-            //string datos = list.ToString();
-            //DisclaimersList = EliminacionLetras(datos);
-            //list = data.requirements as IEnumerable<dynamic>;
-            //datos = list.ToString();
-            //RequirementsList = EliminacionLetras(datos);
-            /*
-            dynamic data = JsonConvert.DeserializeObject(JsonData, typeof(object));
-            var list = data.Response.Outcome.KeyValueOfstringOutcomepQnxSKQu as IEnumerable<dynamic>;
-            var iconNode = list.FirstOrDefault(r => r.Key == "Icon");
-            var valueOfO = iconNode.Value.Value.Value;*/
 
             MyData myData = JsonConvert.DeserializeObject<MyData>(JsonData);
+<<<<<<< HEAD
 
 			Form form = new Form()
+=======
+            string OldJson = LoadForm(myData);
+            string NewJson = OldJson.Replace(@"""%""", "");
+            NewJson = NewJson.Replace(@"""%\""", "");
+            Form form = new Form()
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
 			{
 				id = "3",
 				code = myData.registerCode,
 				name = myData.name,
 				address = myData.direction,
+<<<<<<< HEAD
 				json = "",
 				data = JsonConvert.SerializeObject(myData)
 			};
 			string json = LoadForm(myData);
 			return Json(myData);
+=======
+				json = NewJson,
+				data = JsonConvert.SerializeObject(myData)
+			};
+			
+            return Json(myData);
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
         }
 
         public JsonResult Edit(string ID)
@@ -114,6 +116,57 @@ namespace TestingBackend.Controllers
 
         public string LoadForm(MyData data)
         {
+<<<<<<< HEAD
+=======
+            List<SchemaSaver> FDRList = new List<SchemaSaver>();
+			List<FormSchema> formList = new List<FormSchema>();
+			FormSchema header = new FormSchema { key="",type = "htmlsnippet", value= "<h4>"+data.header+"</h4>" };
+			formList.Add(header);
+			FormSchema address = new FormSchema { key = "" ,type = "htmlsnippet", value = "<h4>" + data.direction + "</h4>" };
+			formList.Add(address);
+			FormSchema title = new FormSchema { key = "",type = "htmlsnippet", value = "<h2>" + data.title + "</h2>" };
+			formList.Add(title);
+			FormSchema code = new FormSchema { key = "", type = "htmlsnippet", value = "<h2>" + data.registerCode + "</h2>" };
+			formList.Add(code);
+			FormSchema resumeText = new FormSchema { key = "",type = "htmlsnippet", value = "<h4>" + data.resumeText + "</h4>" };
+			formList.Add(resumeText);
+			int fields = 1;
+			foreach (var item in data.fields)
+			{
+				FormSchema formField = new FormSchema { key = "campo"+fields, type = "text", value="" };
+				formList.Add(formField);
+                SchemaSaver SaverAux = new SchemaSaver();
+                SaverAux.name = item;
+                SaverAux.title = "campo" + fields;
+                FDRList.Add(SaverAux);
+				fields++;
+			}
+			int disclaimers = 1;
+			foreach (var item in data.disclaimers)
+			{
+				FormSchema formDisclaimer = new FormSchema { key = "", type = "htmlsnippet" ,value = "<h4>" + data.resumeText + "</h4>" };
+				formList.Add(formDisclaimer);
+                disclaimers++;
+			}
+			int requirement = 1;
+			foreach (var item in data.requirements)
+			{
+				FormSchema formRequirements = new FormSchema { key = "requirement"+requirement, type = "file" , value=""};
+				formList.Add(formRequirements);
+                SchemaSaver SaverAux = new SchemaSaver();
+                SaverAux.name = item;
+                SaverAux.title = "requirement" + requirement;
+                FDRList.Add(SaverAux);
+                requirement++;
+			}
+            string SchemaString = Convert.ToString('%') + Convert.ToString('"') + Convert.ToString('{');
+            foreach (var item in FDRList)
+            {
+                SchemaString += '"' + item.title + '"' + @":{""type"":""string""," + @"""title"":" + '"' + item.name + '"' + "},";
+            }
+            SchemaString = SchemaString.Remove(SchemaString.Length - 1, 1);
+            SchemaString += Convert.ToString('}') + Convert.ToString('"')+ Convert.ToString('%');
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
 
 			List<FormSchema> formList = new List<FormSchema>();
 			FormSchema header = new FormSchema { key="",type = "htmlsnippet", value= "<h4>"+data.header+"</h4>" };
@@ -149,11 +202,15 @@ namespace TestingBackend.Controllers
 			}
             SchemaJson schemaJson = new SchemaJson
             {
+<<<<<<< HEAD
                 schema = new SchemaSchema
                 {
 					
                     
                 },
+=======
+                schema = SchemaString,
+>>>>>>> 028260d8d1f433f67f6435eb4e9e0079571f13d6
                 form = formList
             };
 			return JsonConvert.SerializeObject(schemaJson);
