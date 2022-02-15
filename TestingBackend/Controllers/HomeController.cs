@@ -12,14 +12,11 @@ using System.Text.RegularExpressions;
 
 namespace TestingBackend.Controllers
 {
-<<<<<<< HEAD
 	public class HomeController : Controller
 	{
 		List<Form> Forms = new List<Form>();
-=======
-    public class HomeController : Controller
-    {
->>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
+
+
 
 		public ActionResult Index()
         {
@@ -31,36 +28,39 @@ namespace TestingBackend.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public JsonResult Create(string JsonData)
-        {
-            MyData myData = JsonConvert.DeserializeObject<MyData>(JsonData);
-            string OldJson = LoadForm(myData);
-            string NewJson = OldJson.Replace(@"""%""", "");
-            NewJson = NewJson.Replace(@"""%\""", "");
-<<<<<<< HEAD
+		[HttpPost]
+		public JsonResult Create(string JsonData)
+		{
+			MyData myData = JsonConvert.DeserializeObject<MyData>(JsonData);
+			string OldJson = LoadForm(myData);
+			string NewJson = OldJson.Replace(@"""%""", "");
+			NewJson = NewJson.Replace(@"""%\""", "");
 			NewJson = NewJson.Replace(@"\", "");
-			Form form = new Form()
-=======
-            NewJson = NewJson.Replace(@"\", "");
-            Form form = new Form()
->>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
+			int lastIdx = Storage.Instance.Forms.Count;
+			int newIdx = Storage.Instance.Forms.Count + 1;
+			string direct = "";
+			if (myData.direction == "SV")
 			{
-				id =  "3",
+				direct = "Dirección de Sanidad Vegetal";
+			}
+			else if (myData.direction == "SA")
+			{
+				direct = "Dirección de Sanidad Animal";
+			}
+			Form form = new Form()
+			{
+				id =  Convert.ToString(newIdx),
 				code = myData.registerCode,
 				name = myData.name,
-				address = myData.direction,
+				address = direct,
 				json = NewJson,
 				data = JsonConvert.SerializeObject(myData)
 			};
-<<<<<<< HEAD
+			Storage.Instance.Forms.Add(form);
 			return Json(myData);
 		}
-=======
-            Storage.Instance.Forms.Add(form);
-            return Json(myData);
-        }
->>>>>>> 08a839abcdd51765c5356a9c48f1ad25a00256be
+           
+        
 
         public JsonResult Edit(string ID)
         {
