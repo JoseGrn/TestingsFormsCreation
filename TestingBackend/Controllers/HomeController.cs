@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using TestingBackend.Models.JsonSchema;
 using TestingBackend.Models.MyDataClasses;
 using TestingBackend.Models;
+using System.Text.RegularExpressions;
 
 namespace TestingBackend.Controllers
 {
@@ -54,6 +55,7 @@ namespace TestingBackend.Controllers
             string OldJson = LoadForm(myData);
             string NewJson = OldJson.Replace(@"""%""", "");
             NewJson = NewJson.Replace(@"""%\""", "");
+            NewJson = NewJson.Replace(@"\", "");
             Form form = new Form()
 			{
 				id = "3",
@@ -63,7 +65,7 @@ namespace TestingBackend.Controllers
 				json = NewJson,
 				data = JsonConvert.SerializeObject(myData)
 			};
-			
+            Forms.Add(form);
             return Json(myData);
         }
 
@@ -121,7 +123,7 @@ namespace TestingBackend.Controllers
 			int disclaimers = 1;
 			foreach (var item in data.disclaimers)
 			{
-				FormSchema formDisclaimer = new FormSchema { key = "", type = "htmlsnippet" ,value = "<h4>" + data.resumeText + "</h4>" };
+				FormSchema formDisclaimer = new FormSchema { key = "", type = "htmlsnippet" ,value = "<h4>" + item + "</h4>" };
 				formList.Add(formDisclaimer);
                 disclaimers++;
 			}
@@ -146,7 +148,7 @@ namespace TestingBackend.Controllers
 
             SchemaJson schemaJson = new SchemaJson
             {
-                schema = SchemaString,
+                schema = SchemaString,//"hola"
                 form = formList
             };
 			return JsonConvert.SerializeObject(schemaJson);
